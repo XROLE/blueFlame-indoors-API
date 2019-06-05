@@ -29,6 +29,9 @@
   "homepage": "https://github.com/XROLE/curtainAndBlind#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
     "express": "^4.17.1"
   },
   "devDependencies": {
