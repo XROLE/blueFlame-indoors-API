@@ -3,3 +3,5 @@ coverage
 .env
 dist
 .nyc_output
+config
+models
