@@ -14,11 +14,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+const port = process.env.PORT || 3000;
 app.get('/', (req, res) => {
   res.send('WELCOME TO CURTAIN AND BLIND API VERSION ONE');
 });
 
 app.use('/users', userRoute);
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('App is running on port 3000 .....');
 });
