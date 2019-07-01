@@ -19,8 +19,12 @@ class Users {
    * @returns {object} - Registered users
    */
   static async getUsers(req, res) {
-    const users = await User.findAll();
-    return res.send(users);
+    try {
+      const users = await User.findAll();
+      return res.send(users);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   /**
