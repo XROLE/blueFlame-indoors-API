@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "An e-commerce site for curtain, window blind and it accessories",
   "main": "index.js",
+  "engines": {
+    "node": "10.15.0"
+  },
   "scripts": {
     "test": "nyc mocha --require @babel/register server/test/* --exit",
-    "start": "nodemon --exec babel-node server/app.js",
-    "build": "babel server --out-dir dist",
+    "start": "npm run build && node ./dist/app.js",
+    "start:dev": "nodemon --exec babel-node server/app.js",
+    "build": "npm run clean && babel server --out-dir dist",
+    "clean": "rm -rf dist",
     "server": "node dist/app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "db:migrate": "sequelize db:migrate",
@@ -32,6 +37,7 @@
   "dependencies": {
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
+    "core-js": "^3.1.4",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -41,6 +47,7 @@
     "morgan": "^1.9.1",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.3",
+    "regenerator-runtime": "^0.13.2",
     "sequelize": "^5.8.7"
   },
   "devDependencies": {
