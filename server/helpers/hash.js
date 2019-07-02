@@ -15,9 +15,9 @@ export const hashPassword = (passwordToHash) => {
 /**
  * Compare hashed password with inputed password
  *
- * @param {string} hashedPassword - hashed password from db
  * @param {string} password - inputed password
+ * @param {string} hashedPassword - hashed password from db
  *
  * @returns {boolean} - True if hashed password matches with inputed password
  */
-export const comparePassword = (hashedPassword, password) => bcrypt.compareSync(hashedPassword, password);
+export const comparePassword = (password, hashedPassword) => bcrypt.compareSync(password, hashedPassword);

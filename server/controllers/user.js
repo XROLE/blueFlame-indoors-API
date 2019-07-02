@@ -52,6 +52,22 @@ class Users {
       Token: token
     });
   }
+
+  /**
+   *  Login a user
+   *
+   * @param {object} req  - The request object
+   * @param {object} res - The response object
+   *
+   * @returns {object} - User object
+   */
+  static async login(req, res) {
+    const { email } = req.body;
+    const user = await User.findAll({ where: { email } });
+
+    const token = createToken(user[0].dataValues);
+    return res.status(200).send({ token });
+  }
 }
 
 export default Users;
