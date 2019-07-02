@@ -19,7 +19,8 @@ app.get('/', (req, res) => {
   res.send('WELCOME TO CURTAIN AND BLIND API VERSION ONE');
 });
 
-app.use('/users', userRoute);
+app.use('/api/v1/users', userRoute);
+
 app.listen(port, () => {
   console.log('App is running on port 3000 .....');
 });
