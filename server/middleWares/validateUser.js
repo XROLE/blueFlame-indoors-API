@@ -33,13 +33,13 @@ export default class ValidateUser {
       userName,
       email,
       password,
-      confirmPasswod
+      confirmPassword
     } = req.body;
     const userDetails = {
       userName,
       email,
       password,
-      confirmPasswod
+      confirmPassword
     };
     const errors = [];
 
@@ -166,8 +166,8 @@ export default class ValidateUser {
    * @returns {undefined}
    */
   static checkPassword(req, res, next) {
-    const { password, confirmPasswod } = req.body;
-    if (password !== confirmPasswod) {
+    const { password, confirmPassword } = req.body;
+    if (password !== confirmPassword) {
       return res.status(400).send('Passswords do not match');
     }
     return next();
