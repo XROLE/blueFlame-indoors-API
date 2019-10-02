@@ -72,7 +72,9 @@ export default class ValidateUser {
   static checkPasswordLength(req, res, next) {
     const { password } = req.body;
     if (!checkLength(password, 6)) {
-      return res.status(400).send('Password must greater be greater than 5 character');
+      const error = new Error('Password must greater be greater than 5 character');
+      error.status = 400;
+      return next(error);
     }
     return next();
   }
@@ -91,7 +93,9 @@ export default class ValidateUser {
   static checkLowerCase(req, res, next) {
     const { password } = req.body;
     if (!containLowercase(password)) {
-      return res.status(400).send('Passord must contain atleast one lower case character');
+      const error = new Error('Passord must contain atleast one lower case character');
+      error.status = 400;
+      return next(error);
     }
 
     return next();
@@ -111,7 +115,9 @@ export default class ValidateUser {
   static checkUpperCase(req, res, next) {
     const { password } = req.body;
     if (!containUppercase(password)) {
-      return res.status(400).send('Passord must contain atleast one upper case character');
+      const error = new Error('Passord must contain atleast one upper case character');
+      error.status = 400;
+      return next(error);
     }
 
     return next();
@@ -131,7 +137,9 @@ export default class ValidateUser {
   static checkNumber(req, res, next) {
     const { password } = req.body;
     if (!containNumber(password)) {
-      return res.status(400).send('Passord must contain atleast an integer');
+      const error = new Error('Passord must contain atleast an integer');
+      error.status = 400;
+      return next(error);
     }
 
     return next();
@@ -151,7 +159,9 @@ export default class ValidateUser {
   static checkMail(req, res, next) {
     const { email } = req.body;
     if (!isEmail(email)) {
-      return res.status(400).send(`${email} is not a vallid email format`);
+      const error = new Error(`${email} is not a vallid email format`);
+      error.status = 400;
+      return next(error);
     }
     return next();
   }
@@ -170,7 +180,9 @@ export default class ValidateUser {
   static checkPassword(req, res, next) {
     const { password, confirmPassword } = req.body;
     if (password !== confirmPassword) {
-      return res.status(400).send('Passswords do not match');
+      const error = new Error('Passwords do not match');
+      error.status = 400;
+      return next(error);
     }
     return next();
   }
@@ -192,7 +204,9 @@ export default class ValidateUser {
     const emails = users.map(user => user.email);
 
     if (isDuplicate(emails, email)) {
-      return res.status(400).send('Email already in use');
+      const error = new Error('Email already in use');
+      error.status = 400;
+      return next(error);
     }
     return next();
   }
@@ -213,7 +227,9 @@ export default class ValidateUser {
     const userNames = users.map(user => user.userName);
 
     if (isDuplicate(userNames, userName)) {
-      return res.status(400).send('Username has been taken');
+      const error = new Error('Username has been taken');
+      error.status = 400;
+      return next(error);
     }
     return next();
   }
