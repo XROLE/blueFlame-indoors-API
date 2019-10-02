@@ -5,6 +5,8 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import userRoute from './routes/userRoute';
+import notFoundRoute from './middleWares/notFound';
+import errorHandler from './middleWares/errorHandler';
 
 dotenv.config();
 
@@ -20,6 +22,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/users', userRoute);
+
+app.use(notFoundRoute);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log('App is running on port 3000 .....');
