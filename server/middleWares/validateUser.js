@@ -51,9 +51,9 @@ export default class ValidateUser {
     }
 
     if (errors.length) {
-      res.status(400).send(errors);
-      const errorToThrow = new Error(...errors);
-      throw errorToThrow;
+      const error = new Error(...errors);
+      error.status = 400;
+      return next(error);
     }
     return next();
   }
