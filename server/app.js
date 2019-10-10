@@ -5,6 +5,7 @@ import logger from 'morgan';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import userRoute from './routes/userRoute';
+import productRoute from './routes/productRoute';
 import notFoundRoute from './middleWares/notFound';
 import errorHandler from './middleWares/errorHandler';
 
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/v1/users', userRoute);
+app.use('/api/v1/products', productRoute);
 
 app.use(notFoundRoute);
 app.use(errorHandler);

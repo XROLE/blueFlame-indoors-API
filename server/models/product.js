@@ -1,10 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const Curtain = sequelize.define('Curtain', {
+  const Product = sequelize.define('Product', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false
+    },
+    category: {
+      type: DataTypes.STRING,
+      unique: false
     },
     name: {
       type: DataTypes.STRING,
@@ -26,12 +30,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     image: {
       type: DataTypes.STRING
-    }
+    },
+    slide: {
+      type: DataTypes.BOOLEAN
+    },
   });
 
-  Curtain.associate = () => {
+  Product.associate = () => {
     // My association code lives here
   };
 
-  return Curtain;
+  return Product;
 };
