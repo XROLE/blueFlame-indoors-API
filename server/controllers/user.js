@@ -1,8 +1,7 @@
 import models from '../models';
 
 // helpers
-import { createToken } from '../helpers';
-import { hashPassword } from '../helpers';
+import { createToken, hashPassword } from '../helpers';
 
 const { User } = models;
 

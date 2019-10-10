@@ -1,12 +1,14 @@
 
 
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Curtains', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Products', {
     id: {
       allowNull: false,
-      autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: Sequelize.UUID
+    },
+    category: {
+      type: Sequelize.STRING
     },
     name: {
       type: Sequelize.STRING
@@ -23,6 +25,10 @@ module.exports = {
     image: {
       type: Sequelize.STRING
     },
+    slide: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false
+    },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE
@@ -32,5 +38,5 @@ module.exports = {
       type: Sequelize.DATE
     }
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('Users')
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('Products')
 };
