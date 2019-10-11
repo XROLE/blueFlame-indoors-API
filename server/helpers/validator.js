@@ -67,3 +67,12 @@ export const containNumber = stringToCheck => (/^(?=.*[0-9])/).test(String(strin
  * @returns {boolean} - True if string is empty
  */
 export const isEmpty = string => string.trim() === '';
+
+/**
+ * Check string for valid UUID format
+ *
+ * @param {string} uuid - The UUID to test
+ *
+ * @returns {boolean} - true if the string is valid uuid and false if not valid
+ */
+export const isUUID = uuid => (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$/i).test(String(uuid));
