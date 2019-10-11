@@ -24,6 +24,25 @@ class Products {
   }
 
   /**
+   * Get single product from database
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   *
+   * @returns {object} - The product
+   */
+  static async getSingleProduct(req, res) {
+    const { id } = req.params;
+    const product = await Product.findOne({
+      where: { id },
+    });
+
+    return res.json({
+      Success: true,
+      Product: product.dataValues
+    });
+  }
+
+  /**
    * Add product
    *
    * @param {object} req - The request object

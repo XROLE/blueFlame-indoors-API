@@ -7,6 +7,11 @@ import ValidateProduct from '../middleWares/validateProduct';
 const router = express.Router();
 
 router.route('/').get(Products.getProducts);
+router.route('/:id').get(
+  ValidateProduct.checkId,
+  ValidateProduct.doProductExist,
+  Products.getSingleProduct
+);
 
 router.route('/').post(
   ValidateProduct.checkIsEmpty,
