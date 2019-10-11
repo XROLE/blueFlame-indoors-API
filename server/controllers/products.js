@@ -44,6 +44,28 @@ class Products {
       Product: savedProduct
     });
   }
+
+  /**
+   * Delete a product by id
+   *
+   * @param {obect} req - The request object
+   * @param {object} res - The response object
+   *
+   * @returns {string} - success message
+   */
+  static async deleteProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const productToDelete = await Product.findOne({ where: { id } });
+      await productToDelete.destroy();
+
+      return res
+        .status(200)
+        .json({ Message: 'Product deleted succesfully' });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 export default Products;

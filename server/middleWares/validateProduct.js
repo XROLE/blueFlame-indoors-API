@@ -1,4 +1,8 @@
-import { isEmpty } from '../helpers';
+import { isProductAvailable } from '../helpers/isProductAvailable';
+import {
+  isEmpty,
+  isUUID
+} from '../helpers/validator';
 
 /**
  * @class
@@ -36,6 +40,45 @@ export default class ValidateProduct {
       return next(error);
     }
 
+    return next();
+  }
+
+  /**
+   * Validates id
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   * @param {Function} next - Express next middleware
+   *
+   * @returns {undefined}
+   */
+  static checkId(req, res, next) {
+    const { id } = req.params;
+    if (!isUUID(id)) {
+      const error = new Error(`${id} is not a valid uuid format`);
+      error.status = 400;
+      return next(error);
+    }
+    return next();
+  }
+
+  /**
+   * Check if product exist
+   *
+   * @param {object} req - The request object
+   * @param {object} res - the response object
+   * @param {Function} next - Express next middleware
+   *
+   * @returns {undefined}
+   */
+  static async doProductExist(req, res, next) {
+    const { id } = req.params;
+    const product = await isProductAvailable(id);
+
+    if (!product) {
+      const error = new Error('Sorry, product does not exist');
+      error.status = 400;
+      return next(error);
+    }
     return next();
   }
 }

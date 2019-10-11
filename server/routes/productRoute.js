@@ -7,11 +7,18 @@ import ValidateProduct from '../middleWares/validateProduct';
 const router = express.Router();
 
 router.route('/').get(Products.getProducts);
+
 router.route('/').post(
   ValidateProduct.checkIsEmpty,
   Products.addProduct
 );
+
+router.route('/:id').delete(
+  ValidateProduct.checkId,
+  ValidateProduct.doProductExist,
+  Products.deleteProduct
+);
+
 router.route('/').patch((req, res) => res.send('I am a chosen one edit'));
-router.route('/').delete((req, res) => res.send('I am a chosen one delete'));
 
 export default router;
