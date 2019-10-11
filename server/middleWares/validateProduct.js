@@ -1,4 +1,5 @@
 import { isProductAvailable } from '../helpers/isProductAvailable';
+import isCategory from '../helpers/categoryChecker';
 import {
   isEmpty,
   isUUID
@@ -58,6 +59,29 @@ export default class ValidateProduct {
       error.status = 400;
       return next(error);
     }
+    return next();
+  }
+
+  /**
+   * Allows only registered categories
+   * @param {object} req - The request object
+   * @param {object} res - The response objet
+   * @param {Function} next - Express next middleware
+   *
+   * @returns {undefined}
+   */
+  static checkCategory(req, res, next) {
+    let { category } = req.body;
+    if (!category) {
+      // eslint-disable-next-line prefer-destructuring
+      category = req.params.category;
+    }
+    if (!isCategory(category)) {
+      const error = new Error(`${category} is not a valid category type`);
+      error.status = 400;
+      return next(error);
+    }
+
     return next();
   }
 

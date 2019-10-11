@@ -43,6 +43,23 @@ class Products {
   }
 
   /**
+   * Get products by category
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   *
+   * @returns {Array} - Array of products in thesame category
+   */
+  static async getProductByCategory(req, res) {
+    const { category } = req.params;
+    const product = await Product.findAll({ where: { category } });
+
+    return res.json({
+      Success: true,
+      product,
+    });
+  }
+
+  /**
    * Add product
    *
    * @param {object} req - The request object
