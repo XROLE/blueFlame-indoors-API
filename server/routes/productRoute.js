@@ -31,6 +31,11 @@ router.route('/:id').delete(
   Products.deleteProduct
 );
 
-router.route('/').patch((req, res) => res.send('I am a chosen one edit'));
-
+router.route('/:id').patch(
+  ValidateProduct.checkId,
+  ValidateProduct.doProductExist,
+  ValidateProduct.checkIsEmpty,
+  ValidateProduct.checkCategory,
+  Products.editProduct,
+);
 export default router;

@@ -82,6 +82,35 @@ class Products {
   }
 
   /**
+   * Edit product controller
+   * @param {object} req - The request object
+   * @param {obect} res - The response object
+   *
+   * @returns {obect} - Newly edited product
+   */
+  static async editProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const {
+        category, name, description, quantity, price, image, slide
+      } = req.body;
+
+      const productToEdit = await Product.findOne({ where: { id } });
+      const editedProduct = await productToEdit.update({
+        category, name, description, quantity, price, image, slide
+      });
+
+      return res.status(200).json({
+        Success: true,
+        Message: `${name} edited succesfuly`,
+        editedProduct,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /**
    * Delete a product by id
    *
    * @param {obect} req - The request object
