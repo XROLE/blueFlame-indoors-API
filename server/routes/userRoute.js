@@ -28,4 +28,22 @@ router.route('/').post(
   Users.createUser
 );
 
+router.route('/reset').post(
+  ValidateUsers.checkIsEmptyResetPassword,
+  ValidateUsers.checkMail,
+  ValidateUsers.doUserExist,
+  Users.resetPassword
+);
+
+router.route('/reset/password/:id').post(
+  ValidateUsers.checkId,
+  ValidateUsers.checkUserExistById,
+  ValidateUsers.checkIsEmptyUpdatePassword,
+  ValidateUsers.checkPasswordLength,
+  ValidateUsers.checkLowerCase,
+  ValidateUsers.checkUpperCase,
+  ValidateUsers.checkNumber,
+  ValidateUsers.checkPassword,
+  Users.resetPasswordConfirmed,
+);
 export default router;
