@@ -1,4 +1,5 @@
 import models from '../models';
+import uploadToCloudinary from '../helpers/uploadToCloudinary';
 
 const { Product } = models;
 
@@ -71,6 +72,10 @@ class Products {
     const {
       category, name, description, quantity, price, image, slide
     } = req.body;
+
+    const imageUrl = uploadToCloudinary(image);
+    console.log('I am a chosen one upload to cloud', imageUrl);
+
     const productToCreate = {
       category, name, description, quantity, price, image, slide
     };
