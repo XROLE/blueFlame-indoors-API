@@ -46,7 +46,9 @@ export default class ValidateUser {
 
     // eslint-disable-next-line no-restricted-syntax
     for (const userDetail in userDetails) {
-      if (isEmpty(userDetails[userDetail])) {
+      if (userDetails[userDetail] == undefined) {
+        errors.push(`${userDetail} is required`);
+      } else if (isEmpty(userDetails[userDetail])) {
         errors.push(`${userDetail} cannot be empty`);
       }
     }
