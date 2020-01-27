@@ -14,8 +14,8 @@ dotenv.config();
 const app = express();
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
 app.get('/', (req, res) => {

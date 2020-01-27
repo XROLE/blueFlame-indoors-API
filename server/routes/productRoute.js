@@ -1,8 +1,12 @@
 import express from 'express';
+import multer from 'multer';
+
 import Products from '../controllers/products';
 
 // middlewares
 import ValidateProduct from '../middleWares/validateProduct';
+
+const upload = multer({ dest: 'uploads/' });
 
 const router = express.Router();
 
@@ -20,6 +24,7 @@ router.route('/cate/:category').get(
 );
 
 router.route('/').post(
+  upload.single('image'),
   ValidateProduct.checkIsEmpty,
   ValidateProduct.checkCategory,
   Products.addProduct
