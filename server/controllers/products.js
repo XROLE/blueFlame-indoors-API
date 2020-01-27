@@ -69,21 +69,25 @@ class Products {
    * @returns {object} - The added product object
    */
   static async addProduct(req, res) {
-    const {
-      category, name, description, quantity, price, image, slide
-    } = req.body;
+    try {
+      const {
+        category, name, description, quantity, price, slide
+      } = req.body;
 
-    const imageUrl = uploadToCloudinary(image);
-    console.log('I am a chosen one upload to cloud', imageUrl);
+      const image = await uploadToCloudinary(req.file.path);
+      const imageUrl = image.url;
 
-    const productToCreate = {
-      category, name, description, quantity, price, image, slide
-    };
-    const savedProduct = await Product.create(productToCreate);
-    return res.status(201).json({
-      Message: `${name}, added succesfuly`,
-      Product: savedProduct
-    });
+      const productToCreate = {
+        category, name, description, quantity, price, image: imageUrl, slide
+      };
+      const savedProduct = await Product.create(productToCreate);
+      return res.status(201).json({
+        Message: `${name}, added succesfuly`,
+        Product: savedProduct
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   /**

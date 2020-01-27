@@ -1,6 +1,7 @@
 import { isProductAvailable } from '../helpers/isProductAvailable';
 import capitalizeFirstLetter from '../helpers/capitalizeFirstLetter';
 import isCategory from '../helpers/categoryChecker';
+
 import {
   isEmpty,
   isUUID
@@ -21,17 +22,17 @@ export default class ValidateProduct {
    */
   static checkIsEmpty(req, res, next) {
     const {
-      category, name, description, quantity, price, image, slide
+      category, name, description, quantity, price, slide
     } = req.body;
 
     const fieldsToSave = {
-      category, name, description, quantity, price, image, slide
+      category, name, description, quantity, price, slide
     };
     const errors = [];
 
     // eslint-disable-next-line no-restricted-syntax
     for (const field in fieldsToSave) {
-      if (fieldsToSave[field] == undefined) {
+      if (fieldsToSave[field] == undefined ) {
         errors.push(`${field} is required`);
       } else if (isEmpty(fieldsToSave[field])) {
         errors.push(`${field} field cannot be empty`);
@@ -76,7 +77,6 @@ export default class ValidateProduct {
   static checkCategory(req, res, next) {
     let { category } = req.body;
     category = capitalizeFirstLetter(category);
-    console.log('I am a chosen one category', category);
 
     if (!category) {
       // eslint-disable-next-line prefer-destructuring
