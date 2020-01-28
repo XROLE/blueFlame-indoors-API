@@ -1,6 +1,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import express from 'express';
+import cors from 'cors';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
@@ -12,6 +13,7 @@ import errorHandler from './middleWares/errorHandler';
 dotenv.config();
 
 const app = express();
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
