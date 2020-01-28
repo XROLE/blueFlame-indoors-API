@@ -2,7 +2,8 @@ const isCategory = (cate) => {
   const categories = [
     'Curtain',
     'Blind',
-    'Accessories'
+    'Accessories',
+    'Wall Papper',
   ];
   return categories.includes(cate);
 };
