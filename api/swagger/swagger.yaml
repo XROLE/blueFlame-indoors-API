@@ -1,0 +1,42 @@
+swagger: "2.0"
+info:
+  description: "Blue Flame Indoors API Documentation"
+  version: "1.0.0"
+  title: "Blue Flame Indoors"
+  termsOfService: "https://blueflame-indoors-api.herokuapp.com/api/v1"
+  contact:
+    email: "xrolediamond@gmail.com"
+    url: "https://blueflame-indoors-api.herokuapp.com/api/v1"
+host: "blueflame-indoors-api.herokuapp.com"
+basePath: "/v1"
+schemes:
+- "https"
+- "http"
+paths:
+  /product:
+    post:
+      tags:
+      - "product"
+      summary: "Add a new product"
+      description: ""
+      operationId: "addProduct"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product object to be added to product table"
+        required: true
+        schema:
+          $ref: "#/definitions/Pet"
+      responses:
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
