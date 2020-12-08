@@ -10,6 +10,7 @@ const router = express.Router();
 router.route('/').get(Users.getUsers);
 
 router.route('/login').post(
+  validateUserLogin.checkIsEmpty,
   validateUserLogin.checkUserExist,
   validateUserLogin.comparePassword,
   Users.login,
